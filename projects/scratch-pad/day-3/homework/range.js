@@ -23,10 +23,18 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
+        var arr = [];
+    if (start <= end) {
+        for (var i = start; i <= end; i++) {
+            arr.push(i);
+        }
+    }   else if (start >= end) {
+            for (var p = end; p <= start; p++) {
+                arr.unshift(p);
+            }
+        }
     
-    
-    
-    
+    return arr;
     // YOUR CODE GOES ABOVE HERE //
 }
 

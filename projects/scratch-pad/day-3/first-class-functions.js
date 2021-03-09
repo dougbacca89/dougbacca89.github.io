@@ -13,8 +13,15 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
+    if (typeof base === "number") {
+        return function(Number) {
+            return Number > base;
+        };
+    } else if (typeof base === "string") {
+        return function(String) {
+            return String > base;
+        };
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -27,6 +34,15 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
+    if (typeof base === "number") {
+        return function(Number) {
+            return Number < base;
+        };
+    } else if (typeof base === "string") {
+        return function(String) {
+            return String < base;
+        };
+    }
     
     
     
@@ -41,7 +57,9 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
+    return function(String) {
+        return String.toLowerCase().startsWith(startsWith.toLowerCase());
+    };
     
     
     
@@ -55,6 +73,9 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
+    return function(String) {
+        return String.toLowerCase().endsWith(endsWith.toLowerCase());
+    };
     
     
     
@@ -71,8 +92,7 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
+    return strings.map(modify);
     
     
     // YOUR CODE ABOVE HERE //
@@ -89,7 +109,7 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
+    return strings.every(test);
     
     
     
