@@ -55,13 +55,38 @@ function makeContactList() {
         length: function() {
             return contacts.length;
         },
+        //addContact must add contact object and add it to contact list
         addContact: function(contact) {
             return contacts.push(contact);
         },
-        findFullName: function(fullName) 
+        //find contact with fullName input and return contact object or undefined if not found
+        findContact: function(fullName) {
+            var first = fullName.split(" ")[0];
+            var last = fullName.split(" ")[1];
+            for (var i = 0; i < contacts.length; i++) {
+                if (contacts[i].nameFirst === first && contacts[i].nameLast === last) {
+                    return (contacts[i]);
+                }
+                else {
+                    return undefined;
+                }
+            }
+        },
+        //removeContact will remove the taken in contact from the contact list
+        removeContact: function(contact) {
+            return contacts.pop(contact);
+        },
+        //printAllContactNames will go through the contact and print the first and last names as strings
+        printAllContactNames: function() {
+            var fullNames = [];
+
+            for (var i = 0; i < contacts.length; i++) {
+                fullNames[i] = contacts[i].nameFirst + " " + contacts[i].nameLast;
+            }
+                return fullNames.join("\n");
+        }
     };
 }
-
 
 
 

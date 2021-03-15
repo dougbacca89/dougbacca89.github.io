@@ -58,7 +58,8 @@ function toUpperCase(string) {
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
     //return the string forced to be joined by dashes
-    return string.toLowerCase().replaceAll(" ", "-");
+    var str = string.split(" ");
+    return str.join("-").toLowerCase();
 
     // YOUR CODE ABOVE HERE //
 }
@@ -169,8 +170,15 @@ function longest(stringOne, stringTwo) {
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     //use localeCompare to compare stringOne to stringTwo alphabetically
-    return stringTwo.localeCompare(stringOne);
-
+    if (stringOne < stringTwo) {
+        return -1;
+    }
+    else if (stringOne > stringTwo) {
+        return 1;
+    }
+    else if (stringOne === stringTwo) {
+        return 0;
+    }
 
     // YOUR CODE ABOVE HERE //
 }
@@ -185,8 +193,15 @@ function sortAscending(stringOne, stringTwo) {
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-    //use localeCompare to compare stringTwo to stringOne alphabetically
-    return stringOne.localeCompare(stringTwo);
+    if (stringOne > stringTwo) {
+        return -1;
+    }
+    else if (stringOne < stringTwo) {
+        return 1;
+    }
+    else if (stringOne === stringTwo) {
+        return 0;
+    }
 
 
     // YOUR CODE ABOVE HERE //
