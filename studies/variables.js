@@ -33,3 +33,51 @@ console.log(myName); // prints => bob
 var myVariable = 1;
 var myVariable = true;
 myVariable = "someString";
+
+// 4. var, let, const //
+/*
+ * We can assign values to var, let, and const, but they all have specific behaviors to how they
+ * work in our code.
+ */
+var variable = 1;;
+/*
+ * Variable Behaviors:
+ * 1) They are reassignable
+ * 2) They are hoisted
+ * 3) They are scoped to functions
+ * 4) They are NOT scoped to if blocks
+ * 5) They are NOT scoped to loop blocks
+ */
+let let1 = 2;
+/*
+ * Let Behaviors:
+ * 1) They are reassignable
+ * 2) They are NOT hoisted
+ * 3) They are scoped to functions
+ * 4) They are scoped to if blocks
+ * 5) They are scoped to loop blocks
+ */
+const constant = 3;
+/*
+ * Constant Behaviors:
+ * 1) They are NOT reassignable
+ * 2) They are NOT hoisted
+ * 3) They are scoped to functions
+ * 4) They are scoped to if blocks
+ * 5) they are scoped to loop blocks
+ *
+ */
+
+// 5. Hoisting //
+/*
+ * Hoisting happens when you run your code and your variable declarations (functions as well) are 
+ * raised to the top of your code. Since this happens var, let, and const react differently wehen
+ * trying to reference them before declaration.
+ */
+//console.log(a); // => would print undefined to the console because var a; is hoisted to the top
+//var a = 1;      //    of the code above the console.log but its value of 1 is not.
+
+//console.log(b); // => both of these logs would print a reference error to the console because both
+//console.log(c); //    let b; and const c; are not hoisted to the top so the console logs trying to
+let b = 2;      //    reference them cannot find any reference of them.
+const c = 3;
