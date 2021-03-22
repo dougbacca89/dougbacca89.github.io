@@ -386,23 +386,29 @@ _.pluck = function(array, property) {
 _.every = function(collection, func) {
     if (Array.isArray(collection)) {
         for (var i = 0; i < collection.length; i++) {
-            if (func(collection[i], i, collection)) {
-                return true;
+            if (func !== undefined) {
+                if (!func(collection[i], i, collection)) {
+                    return false;
+                }
             }
-            else {
+            else if (!collection[i]) {
                 return false;
-            }    
-        }
+            }
+        }    
+        return true;
     }
     else if (typeof collection === "object") {
         for (var key in collection) {
-            if (func(collection[key], key, collection)) {
-                return true;
-            }
-            else {
-                return false;
-            }    
+            if (func !== undefined) {    
+                if (!func(collection[key], key, collection)) {
+                    return false;
+                }
+                else if (!collection[key]) {
+                    return false;
+                }
+            }        
         }
+        return true;
     }
 };
 
@@ -427,6 +433,34 @@ _.every = function(collection, func) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, func) {
+    if (Array.isArray(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+            if (func !== undefined) {
+                if (func(collection[i], i, collection)) {
+                    return true;
+                }
+            }
+            else if (collection[i]) {
+                return true;
+            }
+        }    
+        return false;
+    }
+    else if (typeof collection === "object") {
+        for (var key in collection) {
+            if (func !== undefined) {    
+                if (func(collection[key], key, collection)) {
+                    return true;
+                }
+                else if (collection[key]) {
+                    return true;
+                }
+            }        
+        }
+        return false;
+    }
+};
 
 /** _.reduce
 * Arguments:
@@ -464,12 +498,6 @@ _.reduce = function(array, func, seed) {
 };
 
 
-// _.reduce = function(array, func, seed) {
-//     array.reduce(func(sum, num) {
-//         return sum += value;
-//     }, seed);
-// };
-
 /** _.extend
 * Arguments:
 *   1) An Object
@@ -484,6 +512,11 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(object1, ...object2) {
+    Object.assign(object1, ...object2);
+    return object1;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
